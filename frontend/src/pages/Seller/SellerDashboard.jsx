@@ -17,7 +17,7 @@ const SellerDashboard = () => {
         const token = localStorage.getItem('token');
         if (!token) throw new Error('No authentication token found');
         
-        const response = await fetch('http://localhost:5001/api/seller/dashboard', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/dashboard`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) throw new Error('Failed to fetch dashboard stats');

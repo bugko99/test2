@@ -15,7 +15,7 @@ const MyGames = () => {
           setLoading(false);
           return;
         }
-        const response = await fetch('http://localhost:5001/api/my-games', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/my-games`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.ok) {
@@ -56,7 +56,7 @@ const MyGames = () => {
             <div key={game.order_id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                 {game.image_url ? (
-                  <img src={`http://localhost:5001${game.image_url}`} alt="cover" style={{ width: '60px', height: '60px', borderRadius: '8px', objectFit: 'cover' }} />
+                  <img src={`${import.meta.env.VITE_API_URL}${game.image_url}`} alt="cover" style={{ width: '60px', height: '60px', borderRadius: '8px', objectFit: 'cover' }} />
                 ) : (
                   <div className="placeholder-img" style={{ width: '60px', height: '60px', borderRadius: '8px' }}>IMG</div>
                 )}

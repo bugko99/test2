@@ -14,7 +14,7 @@ const UserOrders = () => {
           setLoading(false);
           return;
         }
-        const response = await fetch('http://localhost:5001/api/orders', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.ok) {
@@ -52,7 +52,7 @@ const UserOrders = () => {
           orders.map(order => (
             <div key={order.id} className="list-item" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: '1.5rem', alignItems: 'center' }}>
               {order.image_url ? (
-                <img src={`http://localhost:5001${order.image_url}`} alt="cover" style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} />
+                <img src={`${import.meta.env.VITE_API_URL}${order.image_url}`} alt="cover" style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} />
               ) : (
                 <div className="placeholder-img" style={{ width: '80px', height: '80px', borderRadius: '8px' }}>IMG</div>
               )}

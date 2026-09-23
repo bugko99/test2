@@ -12,7 +12,7 @@ const SellerOrders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5001/api/seller/orders', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/orders`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) throw new Error('Failed to fetch orders');

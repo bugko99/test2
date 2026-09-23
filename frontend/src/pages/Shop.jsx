@@ -23,7 +23,7 @@ const Shop = () => {
         return;
       }
       
-      const response = await fetch('http://localhost:5001/api/cart', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -50,7 +50,7 @@ const Shop = () => {
     const fetchGames = async () => {
       setLoading(true);
       try {
-        let url = 'http://localhost:5001/api/shop/products';
+        let url = `${import.meta.env.VITE_API_URL}/api/shop/products`;
         if (category && category !== 'all') {
           url += `?category=${category}`;
         }
@@ -154,7 +154,7 @@ const Shop = () => {
           filteredGames.map(game => (
             <div key={game.id} className="game-card">
               {game.image_url ? (
-                <img src={`http://localhost:5001${game.image_url}`} alt="cover" className="game-card-image" style={{ objectFit: 'cover', width: '100%' }} />
+                <img src={`${import.meta.env.VITE_API_URL}${game.image_url}`} alt="cover" className="game-card-image" style={{ objectFit: 'cover', width: '100%' }} />
               ) : (
                 <div className="game-card-image placeholder-img">{game.game_name} Cover</div>
               )}

@@ -20,14 +20,14 @@ const SellerWithdraw = () => {
       const token = localStorage.getItem('token');
       
       // Fetch balance
-      const balRes = await fetch('http://localhost:5001/api/wallet/balance', {
+      const balRes = await fetch(`${import.meta.env.VITE_API_URL}/api/wallet/balance`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const balData = await balRes.json();
       setBalance(balData.balance);
 
       // Fetch withdrawal history
-      const withRes = await fetch('http://localhost:5001/api/seller/withdrawals', {
+      const withRes = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/withdrawals`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const withData = await withRes.json();
@@ -55,7 +55,7 @@ const SellerWithdraw = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/seller/withdraw', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/withdraw`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`,

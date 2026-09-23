@@ -10,7 +10,7 @@ const AdminUsers = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/users', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to fetch users');
@@ -32,7 +32,7 @@ const AdminUsers = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/users/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -54,7 +54,7 @@ const AdminUsers = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/users/${id}/role`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}/role`, {
         method: 'PUT',
         headers: { 
           'Authorization': `Bearer ${token}`,

@@ -16,7 +16,7 @@ const Cart = () => {
         return;
       }
       
-      const response = await fetch('http://localhost:5001/api/cart', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -37,7 +37,7 @@ const Cart = () => {
   const handleRemove = async (cartItemId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/cart/${cartItemId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/${cartItemId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -56,7 +56,7 @@ const Cart = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/checkout', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/checkout`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -102,7 +102,7 @@ const Cart = () => {
             {cartItems.map(item => (
               <div key={item.cart_item_id} style={{ display: 'flex', gap: '1rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1rem' }}>
                 {item.image_url ? (
-                  <img src={`http://localhost:5001${item.image_url}`} alt="cover" style={{ width: '120px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} />
+                  <img src={`${import.meta.env.VITE_API_URL}${item.image_url}`} alt="cover" style={{ width: '120px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} />
                 ) : (
                   <div className="placeholder-img" style={{ width: '120px', height: '80px', borderRadius: '8px' }}>{item.game_name} Cover</div>
                 )}

@@ -11,7 +11,7 @@ const Wallet = () => {
   const fetchBalance = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/wallet/balance', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/wallet/balance`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -37,7 +37,7 @@ const Wallet = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/wallet/topup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/wallet/topup`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`,

@@ -25,7 +25,7 @@ const SellerProducts = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('No authentication token found');
       
-      const response = await fetch('http://localhost:5001/api/seller/products', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/products`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to fetch products');
@@ -66,7 +66,7 @@ const SellerProducts = () => {
         data.append('image', imageFile);
       }
 
-      const response = await fetch('http://localhost:5001/api/seller/products', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/products`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`
@@ -99,7 +99,7 @@ const SellerProducts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/seller/products/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/products/${id}`, {
         method: 'PUT',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -122,7 +122,7 @@ const SellerProducts = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/seller/products/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/seller/products/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -276,7 +276,7 @@ const SellerProducts = () => {
                 <tr key={product.id}>
                   <td>
                     {product.image_url ? (
-                      <img src={`http://localhost:5001${product.image_url}`} alt="cover" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
+                      <img src={`${import.meta.env.VITE_API_URL}${product.image_url}`} alt="cover" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
                     ) : (
                       <div style={{ width: '50px', height: '50px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px' }}></div>
                     )}

@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/shop/products');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/shop/products`);
         if (response.ok) {
           const data = await response.json();
           // Take only the first 4 for the home page (assuming API returns newest first)
@@ -31,7 +31,7 @@ const Home = () => {
         return;
       }
       
-      const response = await fetch('http://localhost:5001/api/cart', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -70,7 +70,7 @@ const Home = () => {
           trendingGames.map(game => (
             <div key={game.id} className="game-card">
               {game.image_url ? (
-                <img src={`http://localhost:5001${game.image_url}`} alt="cover" className="game-card-image" style={{ objectFit: 'cover', width: '100%' }} />
+                <img src={`${import.meta.env.VITE_API_URL}${game.image_url}`} alt="cover" className="game-card-image" style={{ objectFit: 'cover', width: '100%' }} />
               ) : (
                 <div className="game-card-image placeholder-img">{game.game_name} Cover</div>
               )}
